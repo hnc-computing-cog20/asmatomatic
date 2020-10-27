@@ -20,7 +20,7 @@ from discord.ext import commands
 # Commands
 ###############################################################################
 
-class Hello(commands.Cog):
+class Conversions(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -113,7 +113,7 @@ def generate_random_number(
         print('Invalid base given, returning 0...')
         return 0
 
-format_random_number(
+def format_random_number(
                      number: int = 0,
                      divider: int = 8,
                     ):
@@ -137,4 +137,4 @@ format_random_number(
 ###############################################################################
 
 def setup(bot):
-    bot.add_cog(Hello(bot))
+    bot.add_cog(Conversions(bot))
