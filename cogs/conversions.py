@@ -15,7 +15,6 @@ from random import randint
 import discord
 from discord.ext import commands
 
-
 ###############################################################################
 # Commands
 ###############################################################################
@@ -44,7 +43,7 @@ class Conversions(commands.Cog):
         
         member = member or ctx.author
         await ctx.send(
-                'Hello {0.name}. Get your webcam on.'.format(member)
+                'Hello {0.name}. Are you ready to crunch some digits?'.format(member)
                 )
 
     @commands.command()
@@ -60,15 +59,15 @@ class Conversions(commands.Cog):
     @commands.command()
     async def random_number(self, ctx):
         """
-        Displays a random number to the user
+        Displays a random number to the user.
         """
         
+        # PLACEHOLDER
         await ctx.send(
             'Your random binary number is: `'
             + await asyncio.get_event_loop().run_in_executor(None, generate_random_number)
             + '`'
             )
-
 
 ###############################################################################
 # Functions
@@ -79,14 +78,15 @@ def add_two(x: int, y: int):
     TEST Adds two numbers
     """
     return str(x + y)
-    
+
+# This and format_random_number() should be moved into another cog    
 def generate_random_number(
                             base: str = 'binary',
                             length: int = 8,
-                            divider: int = 1,
+                            #divider: int = 1,
                            ):
     """
-    Generates a random number (either binary, decimal, or hexadecimal)
+    Generates one random number (either binary, decimal, or hexadecimal).
     
     Args:
     base (str) - the numbering system to use. Default is 'binary'.
@@ -96,22 +96,23 @@ def generate_random_number(
     """
     
     max_value = 2**length - 1 # Maximum value of the random int (in decimal)
+    total = ''
     
     if base == 'binary':
-        total = ''
-        for bit in range(int(length / divider)):
+        for bit in range(length):
             total = total + str(randint(0, 1))
         return total
 
     elif base == 'decimal':
-        pass
+        total = str(randint(1, max_value))
 
     elif base == 'hexadecimal':
+        # TODO: Still to be done
         pass
 
     else:
-        print('Invalid base given, returning 0...')
-        return 0
+        print('Invalid base given, returning -1...')
+        return -1
 
 def format_random_number(
                      number: int = 0,
@@ -123,14 +124,12 @@ def format_random_number(
     
     Args:
     number(int) - the number to split. Default is 0.
-    divider(int) - (bin, hex) how many bits to display before splitting.
+    divider(int) - (bin, hex) how many characters to display before splitting.
                    Default is 8.
     """
     
+    # TODO: Still to be done
     pass
-    
-    
-
 
 ###############################################################################
 # Setup

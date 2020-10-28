@@ -9,6 +9,7 @@
 # For when Asmat isn't around, the Asmatomatic will generate
 # questions and tell you how to do things from class.
 # Intended for students on the HNC Comp Tech/Comp Sci classes.
+# Written by students, for students.
 #
 ###############################################################################
 
@@ -39,6 +40,8 @@ if __name__ == '__main__':
     for extension in extensions:
         bot.load_extension(extension)
         print('Loaded extension: ' + extension)
+#TODO: Look into unloading these as well, so that they can have their own
+#"mode" and I can have commands with the same name across the project.
 
 @bot.event
 async def on_connect():
